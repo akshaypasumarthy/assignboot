@@ -4,7 +4,7 @@ pipeline{
         // define the JDK version
         jdk 'java.home'
         // define the maven version
-        maven 'jenkins-maven'
+        maven 'maven3.6'
     }
 
 
@@ -12,22 +12,12 @@ pipeline{
     stages{
         stage('checkout'){
             steps{
-                checkout([$class: 'GitSCM', branches: [[name: '*/main']], extensions: [], userRemoteConfigs: [[credentialsId: 'github access', url: 'https://github.com/akshaypasumarthy/assignboot.git']]])
+                checkout([$class: 'GitSCM', branches: [[name: '*/main']], extensions: [], userRemoteConfigs: [[credentialsId: 'akshay', url: 'https://github.com/akshaypasumarthy/assignboot.git']]])
             }
         }
-        stage('clean'){
-            steps{
-               bat 'mvn clean'
-            }
-        }
-         stage('build'){
+        stage('build'){
             steps{
                bat 'mvn clean package'
-            }
-        }
-         stage('deploy'){
-            steps{
-               bat 'mvn deploy'
             }
         }
     }
