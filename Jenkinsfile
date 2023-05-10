@@ -2,9 +2,9 @@ pipeline{
     agent any
  tools {
         // define the JDK version
-        jdk 'Java 17'
+        jdk 'java.home'
         // define the maven version
-        maven 'Maven 3.6.3'
+        maven 'jenkins-maven'
     }
 
 
