@@ -1,6 +1,11 @@
 pipeline{
     agent any
- 
+ tools {
+        // define the JDK version
+        jdk 'Java 17'
+        // define the maven version
+        maven 'Maven 3.6.3'
+    }
 
 
 
@@ -15,9 +20,14 @@ pipeline{
                bat 'mvn clean'
             }
         }
-         stage('install'){
+         stage('build'){
             steps{
-               bat 'mvn install'
+               bat 'mvn clean package'
+            }
+        }
+         stage('deploy'){
+            steps{
+               bat 'mvn deploy'
             }
         }
     }
